@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <title>Deaf Dave's ToDo</title>
+ 
+ <script>
+  function addItem() {
+	var newItem = document.createElement("div");
+	newItem.innerHTML = document.getElementById("box").value;
+	
+	newItem.onclick = removeItem;
+	
+	// make sure the to do list doesnt get too long!
+	var count = document.getElementById("list").children.length;
+	if (count < 28) {
+		document.getElementById("list").appendChild(newItem);
+		saveList();
+		//console.log(count);
+	}
+  }
+
+	
+  
+  function removeItem() {
+	document.getElementById("list").removeChild(this);
+	saveList();
+  }
+  
+  function saveList() {
+	localStorage.storedList = document.getElementById("list").innerHTML;
+  }
+  
+  function loadList() {
+	document.getElementById("list").innerHTML = localStorage.storedList;
+	 
+    for(var i = 0; i < list.children.length; i++) {
+		list.children[i].onclick = removeItem;
+    }
+  }
+ </script>
+
+ 
+ <style>
+  .header {
+    height			: 75px; 
+    width			: 80%; 
+    background-color: #401A4C; 
+    text-align		: centre; 
+    font-size		: 24px;
+    float			: center; 
+    padding			: 10px; 
+    margin			: auto;
+
+  }
+  
+  .todolist {
+    height			: 600px;
+    width			: 80%; 
+    background-color: lightyellow; 
+    float			: center; 
+    padding			: 10px; 
+    margin			: auto;
+  }
+  
+  input[type="button"] {
+   background-color: gold;
+  }
+ </style>
+ 
+</head>
+
+
+<body>
+ <div class="header">
+  <img src="ToDoList.JPG" width="100" height="141" style="float: left;"> 
+  <p style="font-style:bold; color:gold"> &nbsp;&nbsp;Deaf Dave's To Do</p>
+ </div>
+ 
+ <div class="todolist">
+  <br />
+  <br />
+  <br />
+  
+  <input type="text" id="box" value="Type here to add task"/>
+  <input type="button" value="Add item" onclick="addItem();"/>
+  <br/>
+  <br/>
+   <div id="list"></div>
+ </div>
+ 
+ <script>
+  if(localStorage.storedList) {
+   loadList();
+  }
+ </script>
+</body>
+</html>

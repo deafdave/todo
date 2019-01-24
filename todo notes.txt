@@ -1,0 +1,68 @@
+A Simple ToDo with HTML, CSS and Javascript.
+David Parker December 4th 2017
+
+I will be building a simple todo app first in one HTML file that has CSS styles in <style> </style> and Javaascript in a <script> </script> blocks respectively.
+
+We use a button and an onclick event handler to call the addItem() function when the button is clicked.
+We use DOM (Document Object Model) to manipulate the objects in a DOM tree. Each object can represent a HTML element on a web page.
+
+We use Javascript to have access to DOM's APIs. We use the LocalStorage object to persistently store the state of the todo items. Otherwise everytime we do a refresh for example pressing F5, the to do items will be cleared and reset. We dont want that!
+
+DOM methods
+
+getElementById
+getElementById is a method that fetches the HTML element on the webpage by its id attribute.
+document.getElementById("password");
+getElementById is a common DOM method and this method finds the specific HTML elememnt with the Id attribute.
+
+innerHTML
+innerHTML is a DOM property of a HTML element.
+newItem.innerHTML = document.getElementById("box").value;
+
+createElement
+createElement is a DOM method that creates a new floating and disconnected HTML element. You need to attach the new element to register in the DOM tree.
+var newItem = document.createElement("div");
+
+appendChild
+appendChild is a DOM method that attaches the child element to an existing list element on a web page.
+document.getElementById("list").appendChild(newItem);
+
+removeChild
+removeChild is a DOM method that removes the child element from the existing list element.
+
+
+
+So with these getElementById, appendChild, removeChild and createElement methods, they allow me to add or remove a new item to/from the list in the todo app. Everytime a new item is added or removed to/from the list, the list is also saved.
+
+
+// The value from the input field is added to the list below
+function addItem() {
+   var newItem = document.createElement("div");
+   newItem.innerHTML = document.getElementById("box").value;
+   newItem.onclick = removeItem;
+   
+   document.getElementById("list").appendChild(newItem);
+   saveList();
+}
+
+//
+function removeItem(){
+   document.getElementById("list").removeChild(this);
+   saveList();
+}
+  
+Everytime I click on Add item button, the contents of the input field is copied and the <list></list>'s innerHTML contents are refereshed.
+ 
+If I wish to remove an item from the list, I just click on the existing item and it is then removed by the removeChild method. The this keyword parameter references the child item element within the list element. So basically the item in question is then removed by the onclick event that is attached to this item.
+
+There is a risk of generating a too long to do list. A simple solution is to check for the maximum arbitrary value of 28 to do items that can fit in the light yellow todo list on the web page. More than 28 to do items will not be added.
+ 
+ 
+More information about DOM can be found at
+» https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
+
+More information about the console.log object
+» https://developers.google.com/web/tools/chrome-devtools/console/ 
+ 
+ 
+The next step is to use Polymer web components and advanced Javascript techniques to manage the ToDo list better.
