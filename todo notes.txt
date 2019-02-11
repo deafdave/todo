@@ -1,6 +1,9 @@
 # A Simple ToDo with HTML, CSS and Javascript.
-David Parker December 4th 2017
+- Author: David B Parker
+- Date: December 4th 2017
+- Version: 1.0
 
+## Synopsis:
 I will be building a simple todo app first in one HTML file that has CSS styles in <style> </style> and Javaascript in a <script> </script> blocks respectively.
 
 We use a button and an onclick event handler to call the addItem() function when the button is clicked.
